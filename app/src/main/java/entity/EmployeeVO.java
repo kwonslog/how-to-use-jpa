@@ -1,31 +1,31 @@
-package entity;
+// package entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.sql.Timestamp;
-import lombok.Data;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
+// import java.sql.Timestamp;
+// import lombok.Data;
 
-@Data
-@Entity
-@Table(name = "S_EMP")
-public class EmployeeVO {
+// @Data
+// @Entity
+// @Table(name = "S_EMP")
+// public class EmployeeVO {
 
-  @Id
-  private Long id;
+//   @Id
+//   private Long id;
 
-  private String name;
+//   private String name;
 
-  @Column(name = "START_DATE")
-  private Timestamp startDate;
+//   @Column(name = "START_DATE")
+//   private Timestamp startDate;
 
-  private String title;
+//   private String title;
 
-  @Column(name = "DEPT_NAME")
-  private String deptName;
+//   @Column(name = "DEPT_NAME")
+//   private String deptName;
 
-  private Double salary;
+//   private Double salary;
 
-  private String email;
-}
+//   private String email;
+// }
