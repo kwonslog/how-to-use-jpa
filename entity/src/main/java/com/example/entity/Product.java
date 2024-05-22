@@ -24,5 +24,5 @@ public class Product extends DateEntity {
     // DateEntity 를 상속 받아서 @Id 값을 해결하고 있다.
 
     private String name;
-    private BigDecimal price;
+    private long price;
 }
