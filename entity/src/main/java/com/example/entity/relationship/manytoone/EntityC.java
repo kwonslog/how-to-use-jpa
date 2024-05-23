@@ -1,4 +1,4 @@
-package com.example.relationship.manytoone;
+package com.example.entity.relationship.manytoone;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

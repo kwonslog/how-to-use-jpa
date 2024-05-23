@@ -1,4 +1,4 @@
-package com.example.relationship.bidirectional;
+package com.example.entity.relationship.bidirectional;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

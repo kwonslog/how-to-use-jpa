@@ -1,4 +1,4 @@
-package com.example.relationship.manytomany;
+package com.example.entity.relationship.manytomany;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
