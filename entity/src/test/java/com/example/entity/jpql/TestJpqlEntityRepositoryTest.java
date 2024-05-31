@@ -111,4 +111,84 @@ class TestJpqlEntityRepositoryTest {
         assertEquals("Address 2", counts.get(1)[0]);
         assertEquals(1L, counts.get(1)[1]);
     }
+
+    @Test
+    @DisplayName("이름, 나이, 주소가 모두 null이 아닌 경우 올바른 엔티티를 반환합니다")
+    void returnsCorrectEntitiesWhenAllParametersAreNotNull() {
+        TestJpqlEntity entity1 = new TestJpqlEntity();
+        entity1.setName("Test Name");
+        entity1.setAge(30);
+        entity1.setAddress("Test Address");
+        entityManager.persistAndFlush(entity1);
+
+        List<TestJpqlEntity> entities = repository.findAll(
+                TestJpqlEntitySpecification.hasName("Test Name")
+                        .and(TestJpqlEntitySpecification.hasAge(30))
+                        .and(TestJpqlEntitySpecification.hasAddress("Test Address"))
+        );
+
+        assertEquals(1, entities.size());
+        assertTrue(entities.contains(entity1));
+    }
+
+    @Test
+    @DisplayName("이름만 null이 아닌 경우 올바른 엔티티를 반환합니다")
+    void returnsCorrectEntitiesWhenOnlyNameIsNotNull() {
+        TestJpqlEntity entity1 = new TestJpqlEntity();
+        entity1.setName("Test Name");
+        entityManager.persistAndFlush(entity1);
+
+        List<TestJpqlEntity> entities = repository.findAll(
+                TestJpqlEntitySpecification.hasName("Test Name")
+                        .and(TestJpqlEntitySpecification.hasAge(null))
+                        .and(TestJpqlEntitySpecification.hasAddress(null))
+        );
+
+        assertEquals(1, entities.size());
+        assertTrue(entities.contains(entity1));
+    }
+
+    @Test
+    @DisplayName("나이만 null이 아닌 경우 올바른 엔티티를 반환합니다")
+    void returnsCorrectEntitiesWhenOnlyAgeIsNotNull() {
+        TestJpqlEntity entity1 = new TestJpqlEntity();
+        entity1.setAge(30);
+        entityManager.persistAndFlush(entity1);
+
+        List<TestJpqlEntity> entities = repository.findAll(
+                TestJpqlEntitySpecification.hasName(null)
+                        .and(TestJpqlEntitySpecification.hasAge(30))
+                        .and(TestJpqlEntitySpecification.hasAddress(null))
+        );
+
+        assertEquals(1, entities.size());
+        assertTrue(entities.contains(entity1));
+    }
+
+    @Test
+    @DisplayName("주소만 null이 아닌 경우 올바른 엔티티를 반환합니다")
+    void returnsCorrectEntitiesWhenOnlyAddressIsNotNull() {
+        TestJpqlEntity entity1 = new TestJpqlEntity();
+        entity1.setAddress("Test Address");
+        entityManager.persistAndFlush(entity1);
+
+        List<TestJpqlEntity> entities = repository.findAll(
+                TestJpqlEntitySpecification.hasName(null)
+                        .and(TestJpqlEntitySpecification.hasAge(null))
+                        .and(TestJpqlEntitySpecification.hasAddress("Test Address"))
+        );
+
+        assertEquals(1, entities.size());
+        assertTrue(entities.contains(entity1));
+    }
+
+    @Test
+    @DisplayName("모든 매개변수가 null인 경우 빈 목록을 반환합니다")
+    void returnsEmptyListWhenAllParametersAreNull() {
+        assertTrue(repository.findAll(
+                TestJpqlEntitySpecification.hasName(null)
+                        .and(TestJpqlEntitySpecification.hasAge(null))
+                        .and(TestJpqlEntitySpecification.hasAddress(null))
+        ).isEmpty());
+    }
 }
